@@ -1,0 +1,277 @@
+https://github.com/Arzenow/Arzenow/actions/workflows/main.yml/badge.svg?event=check_run
+```
+
+bash <(curl -L -s https://install.direct/go.sh)
+
+```
+
+2. Once V2Ray is installed, create a new configuration file by running the command:
+
+```
+
+nano /etc/v2ray/config.json
+
+```
+
+3. In the configuration file, add the following JSON code:
+
+```
+
+{
+
+  "inbounds": [
+
+    {
+
+      "port": 1080,
+
+      "protocol": "socks",
+
+      "settings": {
+
+        "auth": "noauth",
+
+        "udp": false
+
+      }
+
+    }
+
+  ],
+
+  "outbounds": [
+
+    {
+
+      "protocol": "vmess",
+
+      "settings": {
+
+        "vnext": [
+
+          {
+
+            "address": "your_server_address",
+
+            "port": 443,
+
+            "users": [
+
+              {
+
+                "id": "your_user_id",
+
+                "alterId": 64
+
+              }
+
+            ]
+
+          }
+
+        ]
+
+      },
+
+      "streamSettings": {
+
+        "network": "tcp",
+
+        "security": "tls",
+
+        "tlsSettings": {
+
+          "allowInsecure": false,
+
+          "serverName": "your_server_address"
+
+        },
+
+        "tcpSettings": null,
+
+        "kcpSettings": null,
+
+        "wsSettings": null,
+
+        "httpSettings": null,
+
+        "quicSettings": null
+
+      }
+
+    }
+
+  ],
+
+  "dns": {
+
+    "servers": [
+
+      "8.8.8.8",
+
+      "8.8.4.4"
+
+    ]
+
+  }
+
+}
+
+```
+
+4. Replace the "your_server_address" and "your_user_id" fields with the actual server address and user ID provided by your V2RayNG service provider.
+
+5. Save the "config.json" file and then restart the V2Ray service by running the command:
+
+```
+
+systemctl restart v2ray
+
+```
+
+6. Install and open the Termius app on your device, and then create a new SSH connection to your VPS.
+
+7. In the SSH connection settings, go to the "Tunnels" tab and add a new dynamic port forwarding rule.
+
+8. Set the source port to "1080" and leave the destination field empty.
+
+9. Save the connection settings and then connect to your VPS.
+
+10. Once the SSH connection is established, configure your web browser or other applications to use the SOCKS5 proxy at "127.0.0.1:1080".
+
+Your V2RayNG configuration is now ready to use with Termius on your device.
+
+Written by Chatsonic
+
+عضو
+
+برای ایجاد یک پیکربندی V2RayNG در VPS خود برای استفاده با Termius، می‌توانید این مراحل را دنبال کنید:
+
+V2Ray را روی VPS خود نصب کنید. با اجرای دستور زیر می توانید این کار را انجام دهید:
+
+bash <(curl -L -s https://install.direct/go.sh)
+
+پس از نصب V2Ray، با اجرای دستور، یک فایل پیکربندی جدید ایجاد کنید:
+
+nano /etc/v2ray/config.json
+
+در فایل پیکربندی، کد JSON زیر را اضافه کنید:
+
+{
+
+  "inbounds": [
+
+    {
+
+      "port": 1080,
+
+      "protocol": "socks",
+
+      "settings": {
+
+        "auth": "noauth",
+
+        "udp": false
+
+      }
+
+    }
+
+  ],
+
+  "outbounds": [
+
+    {
+
+      "protocol": "vmess",
+
+      "settings": {
+
+        "vnext": [
+
+          {
+
+            "address": "your_server_address",
+
+            "port": 443,
+
+            "users": [
+
+              {
+
+                "id": "your_user_id",
+
+                "alterId": 64
+
+              }
+
+            ]
+
+          }
+
+        ]
+
+      },
+
+      "streamSettings": {
+
+        "network": "tcp",
+
+        "security": "tls",
+
+        "tlsSettings": {
+
+          "allowInsecure": false,
+
+          "serverName": "your_server_address"
+
+        },
+
+        "tcpSettings": null,
+
+        "kcpSettings": null,
+
+        "wsSettings": null,
+
+        "httpSettings": null,
+
+        "quicSettings": null
+
+      }
+
+    }
+
+  ],
+
+  "dns": {
+
+    "servers": [
+
+      "8.8.8.8",
+
+      "8.8.4.4"
+
+    ]
+
+  }
+
+}
+
+فیلدهای " آدرس سرور شما " و " شناسه کاربری شما " را با آدرس سرور واقعی و شناسه کاربری ارائه شده توسط ارائه دهنده خدمات V2RayNG خود جایگزین کنید.
+
+فایل "config.json" را ذخیره کنید و سپس با اجرای دستور، سرویس V2Ray را مجددا راه اندازی کنید:
+
+systemctl restart v2ray
+
+برنامه Termius را در دستگاه خود نصب و باز کنید و سپس یک اتصال SSH جدید به VPS خود ایجاد کنید.
+
+در تنظیمات اتصال SSH، به تب "تونل ها" بروید و یک قانون جدید انتقال پورت پویا اضافه کنید.
+
+پورت مبدا را روی "1080" تنظیم کنید و قسمت مقصد را خالی بگذارید.
+
+تنظیمات اتصال را ذخیره کنید و سپس به VPS خود متصل شوید.
+
+هنگامی که اتصال SSH برقرار شد، مرورگر وب یا سایر برنامه های کاربردی خود را برای استفاده از پروکسی SOCKS5 در "127.0.0.1:1080" پیکربندی کنید.
+
+پیکربندی V2RayNG شما بر استفاده با Termius در دستگاه شما آماده است .
+را
